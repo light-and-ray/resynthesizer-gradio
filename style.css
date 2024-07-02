@@ -1,0 +1,19 @@
+.resynthesizer-html-component {
+    position: relative !important;
+    width: 600px !important;;
+    height: 600px !important;;
+    overflow: hidden !important;;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.resynthesizer-html-component iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

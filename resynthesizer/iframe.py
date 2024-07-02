@@ -1,9 +1,6 @@
 import os
 import urllib.parse
-from pathlib import Path
-
-ROOT = str(Path(__file__).parent.parent.absolute())
-
+from .tools import ROOT
 
 def getIframe():
     return (
@@ -28,7 +25,8 @@ def getHTMLPage():
 
 populateIframeJS = f'''
     const iframe = document.getElementById("resynthesizer_iframe");
-    iframe.src = 'data:text/html;charset=utf-8,' + '{urllib.parse.quote(getHTMLPage())}';
+    iframe.src = 'data:text/html;charset=utf-8,{urllib.parse.quote(getHTMLPage())}?';
+    iframe.contentWindow.location.href = iframe.src;
 '''
 
 onIframeLoadedJS = ('(...args) => {'

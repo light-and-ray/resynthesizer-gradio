@@ -16,7 +16,11 @@ div.emscripten {
 }
 
 div.emscripten_border {
-	border: 1px solid #000
+	border: 1px solid #000;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 canvas.emscripten {
@@ -125,4 +129,20 @@ canvas.emscripten {
 	color: #fff;
 	font-family: 'Lucida Console', Monaco, monospace;
 	outline: 0
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
