@@ -35,5 +35,5 @@ onIframeLoadedJS = wrapJsCallback(
 f'   {populateIframeJS}'
 '    console.log("resynthesizer_iframe loaded");'
 '    return [...args];'
-'}')
+)
 
