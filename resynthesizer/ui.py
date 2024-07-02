@@ -5,6 +5,12 @@ from .tools import ROOT
 from .transfer import doSendToResynthesizerJS, doSendToResynthesizer, doGetFromResynthesizerJS, doGetFromResynthesizer
 
 
+def removeUploadFile():
+    file = os.path.join(ROOT, 'upload.ppm')
+    if os.path.exists(file):
+        os.unlink(file)
+
+
 def getResynthesizerBlocks(isSDWEBUI):
     blocks_kwargs = {}
     if not isSDWEBUI:
@@ -17,7 +23,8 @@ def getResynthesizerBlocks(isSDWEBUI):
             load_kwargs['_js'] = onIframeLoadedJS
         else:
             load_kwargs['js'] = onIframeLoadedJS
-        blocks.load(fn=lambda: None, inputs=[], outputs=[], **load_kwargs)
+        blocks.load(fn=removeUploadFile, inputs=[], outputs=[])\
+                .then(fn=lambda: None, inputs=[], outputs=[], **load_kwargs)
     return blocks
 
 
