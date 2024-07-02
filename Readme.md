@@ -15,3 +15,4 @@ Todo:
 - change branch more responsible
 - hide brush when mouse is out
 - do not crop image
+- fix result image css
