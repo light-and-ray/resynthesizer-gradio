@@ -1,6 +1,5 @@
 import os
-import urllib.parse
-from .tools import ROOT
+from .tools import ROOT, wrapJsCallback
 
 def getIframe():
     return (
@@ -32,7 +31,7 @@ populateIframeJS = f'''
     iframe.contentWindow.location.href = iframe.src;
 '''
 
-onIframeLoadedJS = ('(...args) => {'
+onIframeLoadedJS = wrapJsCallback(
 f'   {populateIframeJS}'
 '    console.log("resynthesizer_iframe loaded");'
 '    return [...args];'
