@@ -12,4 +12,3 @@ read [build.md](build.md)
 
 Todo:
 - optimize for big resolution
-- editable brush size

@@ -30,6 +30,7 @@ def getIface(isSDWEBUI=False):
                     sendButton = gr.Button(value="Send to Resynthesizer")
                     getButton = gr.Button(value="Get Result")
                 resultImage = gr.Image(label="Result image", type="pil", interactive=False)
+                gr.Markdown("To change brush size, use `[` and `]` keys after the first click")
             with gr.Column(scale=4):
                 getResynthesizerBlocks(isSDWEBUI)
 
