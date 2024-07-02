@@ -22,10 +22,13 @@ def getHTMLPage():
         html = html.format(style=style.read(), script1=script1.read(), script2=script2.read())
     return html
 
+with open("frame.html", "w") as frame_html:
+    frame_html.write(getHTMLPage())
 
 populateIframeJS = f'''
     const iframe = document.getElementById("resynthesizer_iframe");
-    iframe.src = 'data:text/html;charset=utf-8,{urllib.parse.quote(getHTMLPage())}?';
+    const timestamp = new Date().getTime();
+    iframe.src = '/file={ROOT}/frame.html?' + timestamp;
     iframe.contentWindow.location.href = iframe.src;
 '''
 
