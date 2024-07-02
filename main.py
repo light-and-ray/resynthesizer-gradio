@@ -1,5 +1,5 @@
 #!/bin/python3
-from resynthesizer.gradio import getIface
+from resynthesizer.ui import getIface
 from resynthesizer.tools import ROOT
 
 

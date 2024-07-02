@@ -1,8 +1,15 @@
 import os
 from PIL import Image
-from .tools import loadJsCallback, ROOT
+import gradio as gr
+from .tools import loadJsCallback, ROOT, convert_data_uri_to_pil_image
 
 def doSendToResynthesizer(image: Image.Image):
     image.save(os.path.join(ROOT, 'upload.ppm'))
 
-doSendToResynthesizerJS = loadJsCallback(os.path.join(ROOT, 'resynthesizer', 'transfer.js'))
+doSendToResynthesizerJS = loadJsCallback(os.path.join(ROOT, 'resynthesizer', 'transferTo.js'))
+
+
+def doGetFromResynthesizer(image):
+    return convert_data_uri_to_pil_image(image)
+
+doGetFromResynthesizerJS = loadJsCallback(os.path.join(ROOT, 'resynthesizer', 'transferFrom.js'))
