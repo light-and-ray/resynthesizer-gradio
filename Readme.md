@@ -12,7 +12,7 @@ read [build.md](build.md)
 
 Todo:
 - optimize for big resolution
-- change branch more responsible
+- make changing of brush more responsible
 - hide brush when mouse is out
 - do not crop image
 - fix result image css
