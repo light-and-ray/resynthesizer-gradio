@@ -31,8 +31,17 @@ populateIframeJS = f'''
     iframe.contentWindow.location.href = iframe.src;
 '''
 
+closeConfirmationRegister = '''
+window.addEventListener('beforeunload', (event) => {
+    event.returnValue = 'Are you sure you want to close?';
+});
+
+[...document.getElementsByClassName('cm-content')].forEach(elem => elem.setAttribute('spellcheck', 'true'));
+'''
+
 onIframeLoadedJS = wrapJsCallback(
 f'   {populateIframeJS}'
+f'   {closeConfirmationRegister}'
 '    console.log("resynthesizer_iframe loaded");'
 '    return [...args];'
 )
