@@ -18,7 +18,7 @@ def getHTMLPage():
         open(os.path.join(compiledDir, 'style.css')) as style,
     ):
         html = html.read()
-        html = html.format(style=style.read(), script1=script1.read(), script2=script2.read())
+        html = html.format(style=style.read(), script1=script1.read(), script2=f'var ROOT="{ROOT}";{script2.read()}')
     return html
 
 with open("frame.html", "w") as frame_html:

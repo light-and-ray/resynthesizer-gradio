@@ -1,3 +1,8 @@
+var ARGUMENT = 'upload.ppm'
+var LINK = '/file=' + ROOT + '/' + ARGUMENT
+
+
+
 var Module = void 0 !== Module ? Module : {},
     objAssign = Object.assign;
 Module.expectedDataFileDownloads || (Module.expectedDataFileDownloads = 0), Module.expectedDataFileDownloads++,
@@ -95,7 +100,7 @@ Module.expectedDataFileDownloads || (Module.expectedDataFileDownloads = 0), Modu
         }
     }();
 var read_, readAsync, readBinary, setWindowTitle, fs, nodePath, requireNodeFS, moduleOverrides = objAssign({}, Module),
-    arguments_ = [],
+    arguments_ = [ARGUMENT],
     thisProgram = "./this.program",
     quit_ = (A, I) => {
         throw I
@@ -5114,10 +5119,55 @@ function exit(A, I) {
 function procExit(A) {
     EXITSTATUS = A, keepRuntimeAlive() || (Module.onExit && Module.onExit(A), ABORT = !0), quit_(A, new ExitStatus(A))
 }
-if (dependenciesFulfilled = function A() {
-        calledRun || run(), calledRun || (dependenciesFulfilled = A)
-    }, Module.run = run, Module.preInit)
-    for ("function" == typeof Module.preInit && (Module.preInit = [Module.preInit]); Module.preInit.length > 0;) Module.preInit.pop()();
+
+
+
+// Correct usage inside an async function
+async function loadFile(url) {
+    try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(url + "?" + timestamp);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const blob = await response.blob();
+        // Handle the loaded file, e.g., pass it to Emscripten
+        await handleFile(blob);
+    } catch (error) {
+        console.error('Error fetching file:', error);
+    }
+}
+
+async function handleFile(blob) {
+    // Example: Using the fetched blob
+    FS.writeFile(ARGUMENT, new Uint8Array(await blob.arrayBuffer()));
+    console.log(ARGUMENT + ' saved')
+}
+
 var shouldRunNow = !0;
-Module.noInitialRun && (shouldRunNow = !1), run()
+
+
+(async () => {
+    try {
+        await loadFile(LINK);
+
+
+        if (dependenciesFulfilled = function A() {
+            calledRun || run(), calledRun || (dependenciesFulfilled = A)
+        }, Module.run = run, Module.preInit)
+        for ("function" == typeof Module.preInit && (Module.preInit = [Module.preInit]); Module.preInit.length > 0;) Module.preInit.pop()();
+        Module.noInitialRun && (shouldRunNow = !1), run()
+
+        console.log('runned')
+
+
+    } catch (error) {
+        console.error('Error in IIFE:', error);
+    }
+})();
+
+
+
+
+
 

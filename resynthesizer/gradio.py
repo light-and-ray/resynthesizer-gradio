@@ -2,7 +2,7 @@ import os
 import gradio as gr
 from .iframe import getIframe, onIframeLoadedJS
 from .tools import ROOT
-from .transfer import doSendToResynthesizerJS
+from .transfer import doSendToResynthesizerJS, doSendToResynthesizer
 
 
 def getResynthesizerBlocks(isSDWEBUI):
@@ -25,7 +25,7 @@ def getIface(isSDWEBUI=False):
     with gr.Blocks(title="Resynthesizer", analytics_enabled=False, css="style.css") as iface:
         with gr.Row():
             with gr.Column(scale=2):
-                gr.Image(label="Upload image", type="pil", sources=["upload"], elem_id="resynthesizer_upload")
+                uploadImage = gr.Image(label="Upload image", type="pil", sources=["upload"], elem_id="resynthesizer_upload")
                 with gr.Row():
                     sendButton = gr.Button(value="Send to Resynthesizer")
                     getButton = gr.Button(value="Get Result")
@@ -33,6 +33,6 @@ def getIface(isSDWEBUI=False):
             with gr.Column(scale=4):
                 getResynthesizerBlocks(isSDWEBUI)
 
-        sendButton.click(fn=lambda: None, inputs=[], outputs=[], js=doSendToResynthesizerJS)
+        sendButton.click(fn=doSendToResynthesizer, inputs=[uploadImage], outputs=[]).then(fn=None, js=doSendToResynthesizerJS)
     return iface
 
