@@ -25,8 +25,6 @@ def getHTMLPage():
         html = html.format(style=style.read(), script1=script1.read(), script2=script2.read())
     return html
 
-# with open("output.html", "w") as out:
-#     out.write(getHTMLPage())
 
 populateIframeJS = f'''
     const iframe = document.getElementById("resynthesizer_iframe");
