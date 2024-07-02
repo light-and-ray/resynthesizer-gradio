@@ -12,3 +12,5 @@ read [build.md](build.md)
 
 Todo:
 - optimize for big resolution
+- change branch more responsible
+- hide brush when mouse is out
