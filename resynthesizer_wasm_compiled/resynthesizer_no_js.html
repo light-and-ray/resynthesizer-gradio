@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <title>resynthesizer</title>
+        <style>{style}</style>
+    </head>
+    <body>
+        <div class="spinner" id="spinner" style="display: none;"></div>
+        <div class="emscripten" id="status" style="display: none;"></div>
+        <span id="controls" style="display: none;">
+            <span>
+                <input type="checkbox" id="resize">Resize canvas
+            </span>
+            <span>
+            <input type="checkbox" id="pointerLock" checked="checked">
+                Lock/hide mouse pointer &nbsp;&nbsp;&nbsp;
+            </span>
+            <span>
+                <input type="button" onclick='Module.requestFullscreen(document.getElementById("pointerLock").checked,document.getElementById("resize").checked)' value="Fullscreen">
+            </span>
+        </span>
+        <div class="emscripten">
+            <progress id="progress" max="0" value="0" hidden=""></progress>
+        </div>
+        <div class="emscripten_border">
+            <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1" style="cursor: default;" width="256" height="256"></canvas>
+        </div>
+        <textarea id="output" rows="8" style="display: none;"></textarea>
+        <script>{script1}</script>
+        <script>{script2}</script>
+    </body>
+</html>
