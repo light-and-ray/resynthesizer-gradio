@@ -3,7 +3,7 @@ from PIL import Image
 import io
 import base64
 
-ROOT = str(Path(__file__).parent.parent.absolute())
+ROOT = str(Path(__file__).parent.parent.absolute()).replace('\\', '/')
 
 
 def wrapJsCallback(code):
