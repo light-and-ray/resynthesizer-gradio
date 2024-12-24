@@ -4,7 +4,7 @@ Resynthesizer is a very old (2000 year) open-source equivalent to Adobe Photosho
 
 ![](/images/animation.webp)
 
-This gradio demo integrates compiled wasm build of [61315's standalone C implementation of resynthesizer](https://github.com/61315/resynthesizer) inside iframe and allows interactions with it
+This gradio demo integrates compiled wasm build (i.e. client side) of [61315's standalone C implementation of resynthesizer](https://github.com/61315/resynthesizer) inside iframe and allows interactions with it
 
 ### How binary was build?:
 
